@@ -1,0 +1,73 @@
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="container" id="container">
+    <div class="navbar-brand">
+<!-- height is defined to stop the navbar from stretching vertically on older versions of Chromium -->
+      <img class="navlogo" style="width:50px;height:52px;" src="/img/favicon.png">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="/" class="navbar-item {% if page.url == " /" %}is-active{% endif %}">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+            <span>Home</span>
+          </span>
+        </a>
+        <a href="/downloads/" class="navbar-item {% if page.url == " /downloads/" %}is-active{% endif %}">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-download"></i>
+            </span>
+            <span>Downloads</span>
+          </span>
+        </a>
+        <a href="/pgp/" class="navbar-item {% if page.url == " /pgp/" %}is-active{% endif %}">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-pgptools"></i>
+            </span>
+            <span>PGP Tools</span>
+          </span>
+        </a>
+        <a href="/pgp-public/" class="navbar-item {% if page.url == " /pgp-public/" %}is-active{% endif %}">
+          <span class="icon-text">
+            <span class="icon">
+              <i class="fas fa-pgppublic"></i>
+            </span>
+            <span>PGP Public Key</span>
+          </span>
+        </a>
+      </div>
+        
+      <div class="navbar-end is-hidden-touch">
+        <a href="https://www.youtube.com/@phenbyte" class="navbar-item" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://twitter.com/phenbyte" class="navbar-item" title="Twitter / X">
+          <i class="fab fa-twitter"></i><i class="fab fa-x-twitter"></i>
+        </a>
+        <a rel="me" href="https://bsky.app/profile/phenixhartogh.com.au" class="navbar-item" title="Bluesky">
+          <i class="fab fa-bluesky"></i>
+        </a>
+        <a rel="me" href="https://discord.gg/eKz4KpsQjH" class="navbar-item" title="Discord Server">
+          <i class="fab fa-discord"></i>
+        </a>
+        <a href="https://github.com/PhenixHartogh/phenixhartogh.com.au" class="navbar-item" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="/contact" class="navbar-item {% if page.url == " /contact/" %}is-active{% endif %}" title="Contact">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</nav>
+{% include nojs.html %}

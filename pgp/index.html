@@ -1,0 +1,149 @@
+---
+description: Tools to do everything PGP related.
+layout: default
+permalink: /pgp/
+title: PGP Tools
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PGP Tools</title>
+
+<!-- OpenPGP.js -->
+<script src="https://unpkg.com/openpgp@5.11.0/dist/openpgp.min.js"></script>
+
+<style>
+textarea, input[type="text"], input[type="password"] {
+  width: 100%;
+  margin: 6px 0;
+  padding: 8px;
+  background: #161b22;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+}
+button {
+  margin: 6px 6px 6px 0;
+  padding: 8px 12px;
+  background: #238636;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background: #2ea043;
+}
+.copy-btn {
+  cursor: pointer;
+  float: right;
+  font-size: 1.2em;
+}
+.section {
+  border: 1px solid #30363d;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Browser-Based PGP Tools</h1>
+
+<!-- ===== GENERATE / LOAD KEYS ===== -->
+<div class="section">
+<h2>Generate or Load PGP Keys</h2>
+
+<input type="text" id="name" placeholder="Name">
+<input type="text" id="email" placeholder="Email">
+<input type="password" id="passphrase" placeholder="Passphrase">
+<button type="button" onclick="generateKey()">Generate New Keys</button>
+
+<hr>
+
+<label>Upload Public Key</label>
+<input type="file" accept=".asc,.txt" onchange="loadKeyFile(event,'publicKey')">
+
+<div class="clearfix">
+  <span class="copy-btn" onclick="copyText('publicKey')">📋</span>
+</div>
+<textarea id="publicKey" rows="8" placeholder="Public Key"></textarea>
+<button type="button" onclick="downloadText('publicKey','public_key.asc')">⬇️ Download Public Key</button>
+
+<hr>
+
+<label>Upload Private Key</label>
+<input type="file" accept=".asc,.txt" onchange="loadKeyFile(event,'privateKey')">
+
+<div class="clearfix">
+  <span class="copy-btn" onclick="copyText('privateKey')">📋</span>
+</div>
+<textarea id="privateKey" rows="8" placeholder="Private Key"></textarea>
+<button type="button" onclick="downloadText('privateKey','private_key.asc')">⬇️ Download Private Key</button>
+
+<p><strong>⚠️ Never share your private key.</strong></p>
+</div>
+
+<!-- ===== ENCRYPT ===== -->
+<div class="section">
+<h2>Encrypt Message</h2>
+
+<textarea id="encryptMessage" rows="5" placeholder="Message to encrypt"></textarea>
+<textarea id="encryptPublicKey" rows="6" placeholder="Recipient public key"></textarea>
+<button type="button" onclick="encryptMessage()">Encrypt</button>
+
+<div class="clearfix">
+  <span class="copy-btn" onclick="copyText('encryptedOutput')">📋</span>
+</div>
+<textarea id="encryptedOutput" rows="6" placeholder="Encrypted message"></textarea>
+</div>
+
+<!-- ===== DECRYPT ===== -->
+<div class="section">
+<h2>Decrypt Message</h2>
+
+<textarea id="encryptedInput" rows="6" placeholder="Encrypted message"></textarea>
+<textarea id="decryptPrivateKey" rows="6" placeholder="Your private key"></textarea>
+<input type="password" id="decryptPassphrase" placeholder="Passphrase">
+<button type="button" onclick="decryptMessage()">Decrypt</button>
+
+<div class="clearfix">
+  <span class="copy-btn" onclick="copyText('decryptedOutput')">📋</span>
+</div>
+<textarea id="decryptedOutput" rows="5" placeholder="Decrypted message"></textarea>
+</div>
+
+<!-- ===== SIGN ===== -->
+<div class="section">
+<h2>Sign Message</h2>
+
+<textarea id="signMessage" rows="5" placeholder="Message to sign"></textarea>
+<textarea id="signPrivateKey" rows="6" placeholder="Private key"></textarea>
+<input type="password" id="signPassphrase" placeholder="Passphrase">
+<button type="button" onclick="signMessage()">Sign</button>
+
+<div class="clearfix">
+  <span class="copy-btn" onclick="copyText('signedOutput')">📋</span>
+</div>
+<textarea id="signedOutput" rows="6" placeholder="Signed message"></textarea>
+</div>
+
+<!-- ===== VERIFY ===== -->
+<div class="section">
+<h2>Verify Signed Message</h2>
+
+<textarea id="signedMessageInput" rows="6" placeholder="Signed message"></textarea>
+<textarea id="verifyPublicKey" rows="6" placeholder="Signer public key"></textarea>
+<button type="button" onclick="verifyMessage()">Verify</button>
+
+<p id="verifyResult"></p>
+</div>
+
+<script src="pgp/pgp.js"></script>
+</body>
+</html>
