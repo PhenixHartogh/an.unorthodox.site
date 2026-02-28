@@ -5,7 +5,7 @@ const versionObj = document.querySelector("#version");
 const editionObj = document.querySelector("#edition");
 const downloadURL = document.querySelector("#download");
 
-fetch("./products.json").then(data => data.json().then(products => {
+fetch("https://an.unorthodox.site/downloads/products.json").then(data => data.json().then(products => {
 	productList = products;
         // Normally we'd use constants, but Firefox <51 doesn't work right with the way we use them, so use variables.
 	for (var i in products) {
